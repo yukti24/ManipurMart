@@ -1,0 +1,86 @@
+<md-content class="main-content" ng-controller="ReviewCtrl">
+
+	<md-table-container>
+	  <table md-table md-progress="promise">
+	    <thead md-head>
+	      <tr md-row>
+	      	<th md-column class="text-center text-uppercase bold">
+          		{{ 'CUSTOMER' | translate }}
+			</th>
+          	<th md-column class="text-center text-uppercase bold">
+				{{ 'RATING' | translate }}
+			</th>
+			<th md-column class="text-center text-uppercase bold">
+				{{ 'ORDER_NUMBER' | translate }}
+			</th>
+          	<th md-column class="text-center text-uppercase bold">
+				{{ 'ITEM' | translate }}
+			</th>
+	        <th md-column class="text-center text-uppercase bold">
+				{{ 'STATUS' | translate }}
+			</th>
+			<th md-column class="text-center text-uppercase bold">
+                {{ 'CREATED_AT' | translate }}
+            </th>
+			<th md-column></th>
+	      </tr>
+	    </thead>
+	    <tbody md-body>
+	      <tr md-row ng-repeat="review in reviews">
+	      	<td md-cell>
+	      		<img class="img-thumb img-circle"
+				style="margin-right: 6px"
+				ng-src="/images/avatar.png"
+              	actual-src="{{ review.user.photo.url() }}" />
+				{{:: review.user.name || ('GUEST' | translate) }}
+	      	</td>
+	        <td md-cell class="text-center">
+				<star-rating ng-model="review.rating" readonly="true">
+				</star-rating>
+			</td>
+			<td class="text-center link" md-cell
+			  ng-click="onViewOrder($event, review.order)">
+          		{{ 'ORDER' | translate }} #{{:: review.order.number }}
+          	</td>
+	        <td md-cell class="text-center">{{:: review.item.name }}</td>
+	        <td md-cell class="text-center">
+				<md-select class="label" ng-model="review.status" aria-label="Status"
+                    ng-class="{ 'green': review.status === 'Published',
+						'red': review.status === 'Banned',
+						'yellow': review.status === 'Pending' }">
+                    <md-option value="Pending" ng-click="onChangeStatus(review, 'Pending')">
+                        {{ 'PENDING' | translate }}
+                    </md-option>
+                    <md-option value="Banned" ng-click="onChangeStatus(review, 'Banned')">
+                        {{ 'BANNED' | translate }}
+                    </md-option>
+                    <md-option value="Published" ng-click="onChangeStatus(review, 'Published')">
+                        {{ 'PUBLISHED' | translate }}
+                    </md-option>
+                </md-select>
+			</td>
+			<td md-cell class="text-center">
+			{{:: review.createdAt | date:'yyyy-MM-dd' }}
+			</td>
+	        <td md-cell>
+
+                <section layout="row" layout-align="center center">
+                    <md-button class="md-icon-button md-primary" ng-click="onView($event, review)" aria-label="Edit">
+                        <ng-md-icon icon="rate_review"></ng-md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button md-primary" ng-click="onDelete($event, review)" aria-label="Delete">
+                        <ng-md-icon icon="clear"></ng-md-icon>
+                    </md-button>
+                </section>
+	        </td>
+	      </tr>
+	    </tbody>
+	  </table>
+	</md-table-container>
+	<md-table-pagination md-limit-options="rowOptions"
+	  md-limit="query.limit"
+	  md-page="query.page" md-total="{{query.total}}"
+		md-on-paginate="onPaginationChange"
+		md-label="{ rowsPerPage: '{{ 'ROWS_PER_PAGE' | translate }}', of: '{{ 'OF' | translate }}' }">
+	</md-table-pagination>
+</md-content>

@@ -1,0 +1,82 @@
+<md-content class="main-content" ng-controller="ProfileCtrl">
+    <div layout="row" layout-xs="column" layout-sm="column" layout-padding>
+        <div flex>
+
+            <form name="form" novalidate>
+
+                <div layout="row">
+
+                    <md-input-container>
+                        <label>{{ 'NAME' | translate }}</label>
+                        <input type="text" name="name" ng-model="user.name" required placeholder>
+                        <div ng-messages="form.name.$error" ng-show="form.$submitted">
+                          <div ng-message="required">Name required</div>
+                        </div>
+                      </md-input-container>
+                      </div>
+                      <div layout="row">
+                      <md-input-container>
+                        <label>{{ 'USERNAME' | translate }}</label>
+                        <input type="text" name="username" ng-model="user.username" required placeholder>
+                        <div ng-messages="form.username.$error" ng-show="form.$submitted">
+                          <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+                        </div>
+                      </md-input-container>
+                      </div>
+                      <div layout="row">
+                      <md-input-container>
+                        <label>{{ 'EMAIL' | translate }}</label>
+                        <input type="email" name="email" ng-model="user.email" placeholder>
+                        <div ng-messages="form.email.$error" ng-show="form.$submitted">
+                          <div ng-message="email">{{ 'INVALID_EMAIL' | translate }}</div>
+                        </div>
+                      </md-input-container>
+                      </div>
+                      <div layout="row">
+                        <md-input-container>
+                          <label>{{ 'MOBILE' | translate }}</label>
+                          <input type="mobile" name="mobile" ng-model="user.mobile" placeholder>
+                          <div ng-messages="form.mobile.$error" ng-show="form.$submitted">
+                            <div ng-message="mobile">{{ 'INVALID_EMAIL' | translate }}</div>
+                          </div>
+                        </md-input-container>
+                        </div>
+
+                        <div layout="row" layout-align="start center">
+                            <md-input-container md-no-float>
+                              <label>{{ 'UPLOAD_PICTURE' | translate }}</label>
+                              <input type="text" ng-value="user.photo.name()" disabled placeholder>
+                            </md-input-container>
+                  
+                            <ng-md-icon icon="photo_camera" class="photo-camera" ng-class="{ 'icon-active': user.photo.url() }"
+                              ngf-select="uploadImage($file)" ngf-pattern="'image/*'" accept="image/*">
+                              <md-tooltip>
+                                {{ 'CHOOSE_FILE' | translate }}
+                              </md-tooltip>
+                            </ng-md-icon>
+                            <md-progress-circular class="md-primary" md-diameter="30" ng-if="isUploading">
+                            </md-progress-circular>
+                          </div>
+                        
+                <div layout="row">
+                      <md-input-container>
+                        <label>{{ 'PASSWORD' | translate }}</label>
+                        <input type="password" name="Password" placeholder ng-required="!user.id" ng-model="user.password">
+                      </md-input-container>
+                </div>
+
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary"
+                      ng-disabled="!form.$valid"
+                      ng-click="onSubmit(form.$valid)">
+                        {{ !isSending ? ('SAVE' | translate) : ('SAVING' | translate) }}
+                    </md-button>
+                </div>
+
+            </form>
+
+        </div>
+     
+    </section>
+
+</md-content>
