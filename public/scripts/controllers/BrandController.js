@@ -1,3 +1,4 @@
+
 angular.module('main')
   .controller('BrandListCtrl', function ($scope, $mdDialog, $translate, Brand, Toast, Auth) {
 
@@ -8,9 +9,17 @@ angular.module('main')
      const usr = Auth.getLoggedUser();
 
      const usrtype = Auth.getLoggedUser();
-
+console.log(usrtype);
+console.log(usr.type);
+    
       $scope.isPrimary  = usr.isPrimary;
       $scope.type  = usr.type;
+if(usr.type === 'super_admin')
+{
+  $scope.type  = 'admin';
+}
+
+     // $scope.type  = usr.type;
     $scope.query = {
       canonical: '',
       limit: 5,
