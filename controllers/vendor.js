@@ -3,12 +3,37 @@ const vendor = require('../middlewares/vendor')
 const router = express.Router()
 
 const smsClient = require("../helpers/sendsms");
-
+//const File = require("../public/scripts/services/FileUploadService")
+var isUploading = false;
+var photo ;
 router.get('/', vendor, (req, res) => {
   res.render('vendor')
 })
 
+uploadImage = function (file) {
+
+  if (file) {
+console.log("cvc");
+    isUploading = true;
+
+    File.upload(file).then(function(savedFile) {
+      photo = savedFile;
+      isUploading = false;
+     // $scope.$apply();
+    }, function(error) {
+
+      //Toast.show(error.message);
+       isUploading = false;
+     // $scope.$apply();
+    });
+  }
+}
+
+
 router.post('/', vendor, async (req, res) => {
+  console.log(req) ;
+  console.log(req.files) ;
+  console.log(req.username);
 
   const name = req.body.name.trim()
   const username = req.body.username.toLowerCase().trim()
@@ -16,6 +41,10 @@ router.post('/', vendor, async (req, res) => {
   const mobile = req.body.mobile.toLowerCase().trim()
   const password = req.body.password.trim()
   const passwordConfirmation = req.body.passwordConfirmation.trim()
+
+  
+
+   console.log(req.username);
 
   if (!name) {
     return res.render('vendor', {
@@ -58,6 +87,16 @@ router.post('/', vendor, async (req, res) => {
     })
   }
 
+  if (req.body.image) {
+    console.log("cvc");
+        isUploading = true;
+    
+        Parse.File(name || 'image.jpg', file).save();
+
+
+      }
+
+
   try {
 
    
@@ -89,26 +128,26 @@ router.post('/', vendor, async (req, res) => {
     const acl = new Parse.ACL()
     acl.setPublicReadAccess(true)
     acl.setPublicWriteAccess(false)
-    user.setACL(acl)
+   // user.setACL(acl)
 
-    await user.save(null, { useMasterKey: true })
+   // await user.save(null, { useMasterKey: true })
 
    
-     const query1 = new Parse.Query(Parse.Role)
-  query1.equalTo('name', 'Vendor')
-  const role = await query1.first()
-console.log(role)
-console.log(user)
-  role.getUsers().add(user)
-  await role.save(null, { useMasterKey: true })
+   //  const query1 = new Parse.Query(Parse.Role)
+  //query1.equalTo('name', 'Vendor')
+  //const role = await query1.first()
+//console.log(role)
+//console.log(user)
+  //role.getUsers().add(user)
+ // await role.save(null, { useMasterKey: true })
  
 
-   smsClient.sendsms();
+   
 
 
     //req.session.user = user.toJSON()
     //req.session.token = user.getSessionToken()
-    res.redirect('/auth/success')
+   // res.redirect('/auth/success')
     
   } catch (error) {
     res.render('vendor', {

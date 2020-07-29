@@ -9,7 +9,7 @@ module.exports = {
     env_production: {
       NODE_ENV: 'production',
       LOG_LEVEL: 'error',
-      PUBLIC_SERVER_URL: 'https://admin.tryion.shop',
+      PUBLIC_SERVER_URL: 'http://localhost:1337',
       PARSE_SERVER_MOUNT: '/api',
       PARSE_VERIFY_USER_EMAILS: true,
       APP_NAME: 'IonShop',
@@ -46,7 +46,7 @@ module.exports = {
       NODE_ENV: 'production',
       APP_ID: 'JrWy7sUKLL',
       MASTER_KEY: 'MASTER_KEY',
-      PUBLIC_SERVER_URL: 'https://admin.tryion.shop',
+      PUBLIC_SERVER_URL: 'http://localhost:1337',
       PARSE_SERVER_MOUNT: '/api',
     }
   }]

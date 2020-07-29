@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
 const express = require('express')
+var cors = require('cors')
 const ParseServer = require('parse-server').ParseServer
 const ParseDashboard = require('parse-dashboard')
 const S3Adapter = require('parse-server').S3Adapter
@@ -46,6 +47,8 @@ app.use(bodyParser.urlencoded({
   limit: process.env.MAX_REQUEST_SIZE,
   extended: false
 }))
+
+app.use(cors())
 
 app.use(bodyParser.json({
   limit: process.env.MAX_REQUEST_SIZE,
@@ -157,6 +160,10 @@ const dashboard = new ParseDashboard({
   useEncryptedPasswords: true,
   trustProxy: 1
 }, { allowInsecureHTTP: true, cookieSessionSecret: process.env.MASTER_KEY });
+
+
+//app.use(cors());
+
 
 // Serve the Parse API
 app.use(process.env.PARSE_SERVER_MOUNT, api)

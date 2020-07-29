@@ -2,6 +2,15 @@ body {
   font-family: 'Quicksand', 'Cairo', sans-serif;
 }
 
+@media (min-width: 1280px){
+.flex-gt-md-25, .layout-row>.flex-gt-md-25 {
+    flex: 1 1 100%;
+    max-width: 34%;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+}
+
 @media (min-width: 600px) {
   md-sidenav {
     max-width: 260px;

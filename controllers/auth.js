@@ -81,7 +81,7 @@ console.log(userd[0].id)
                 flash: error.message
             })
         } else {
-            console.log(error.data.error)
+           // console.log(error.data.error)
             res.render('login', {
                 flash: error.data.error
             })

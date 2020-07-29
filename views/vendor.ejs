@@ -1,5 +1,5 @@
 <md-content class="login-content" layout layout-align="center">
-    <md-card flex-gt-sm="25" flex="100">
+    <md-card flex-gt-sm="55" flex="100">
       <% if (locals.flash) { %>
       <md-toolbar class="md-accent">
           <p class="md-toolbar-tools">
@@ -8,7 +8,7 @@
         </md-toolbar>
         <br>
       <% } %>
-      <form name="form" action="/vendor" method="post">
+      <form name="form" action="/vendor" enctype="multipart/form-data" method="post">
         <md-card-content layout="column">
           <md-input-container>
             <label>{{ 'NAME' | translate }}</label>
@@ -54,6 +54,11 @@
             <md-progress-circular class="md-primary" md-diameter="30" ng-if="isUploading">
             </md-progress-circular>
           </div>
+
+          <label for="addimage" class="col-9 col-form-label">Add Image</label>
+                <div class="col-12">
+                  <input type="file" class="form-control-file" name="image" required> 
+              </div>
         </md-card-content>
         <div class="md-actions" layout="row" layout-align="end center">
           <md-button type="submit" md-no-ink class="md-primary">
