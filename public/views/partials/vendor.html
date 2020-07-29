@@ -33,6 +33,14 @@
               <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
             </div>
           </md-input-container>
+
+          <md-input-container>
+            <label>{{ 'MOBILE' | translate }}</label>
+            <input type="text" name="mobile" ng-model="obj.mobile" required placeholder>
+            <div ng-messages="form.mobile.$error" ng-show="form.$submitted">
+              <div ng-message="required">{{ 'FIELD_REQUIRED' | translate }}</div>
+            </div>
+          </md-input-container>
   
           <md-input-container>
             <label>{{ 'EMAIL' | translate }}</label>
@@ -54,11 +62,9 @@
           </md-input-container>
 
           <md-input-container class="md-block">
-            <md-checkbox ng-model="obj.isPrimary" aria-label="Featured on Homepage">
-              {{ 'PRIMARY_SUBSCRIP' | translate }}
-            </md-checkbox>
-            <div flex="70">
-              <md-radio-group required ng-model="obj.type">
+           
+           
+              <md-radio-group required ng-model="obj.isPrimary">
                 <md-radio-button ng-click="onTypeSelected(true)" ng-value="true" class="md-primary">
                   {{ 'PRIMARY_SUBSCRIP' | translate }}</md-radio-button>
               </md-radio-group>
@@ -66,7 +72,7 @@
                 <md-radio-button  ng-value="false" class="md-primary">
                   {{ 'STANDARD_SUBSCRIP' | translate }}</md-radio-button>
               </md-radio-group>
-            </div>
+        
           </md-input-container>
 
           <md-input-container ng-if="obj.isPrimary" md-no-float>
