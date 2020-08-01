@@ -9,14 +9,14 @@ module.exports = {
     env_production: {
       NODE_ENV: 'production',
       LOG_LEVEL: 'error',
-      PUBLIC_SERVER_URL: 'https://manipurmart-admin.herokuapp.com',
+      PUBLIC_SERVER_URL: 'http://localhost:1337',
       PARSE_SERVER_MOUNT: '/api',
       PARSE_VERIFY_USER_EMAILS: true,
       APP_NAME: 'IonShop',
       APP_ID: 'JrWy7sUKLL',
       MASTER_KEY: 'MASTER_KEY',
       READ_ONLY_MASTER_KEY: 'READ_ONLY_MASTER_KEY',
-      CURRENCY: 'USD',
+      CURRENCY: 'INR',
       CURRENCY_LOCALE: 'en-US',
       CURRENCY_DISPLAY: 'code',
       CUSTOM_LANG: 'en',
@@ -46,7 +46,7 @@ module.exports = {
       NODE_ENV: 'production',
       APP_ID: 'JrWy7sUKLL',
       MASTER_KEY: 'MASTER_KEY',
-      PUBLIC_SERVER_URL: 'https://manipurmart-admin.herokuapp.com',
+      PUBLIC_SERVER_URL: 'http://localhost:1337',
       PARSE_SERVER_MOUNT: '/api',
     }
   }]

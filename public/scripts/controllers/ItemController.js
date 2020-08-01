@@ -151,6 +151,15 @@ angular.module('main')
           $scope.brands = brands;
          
         });
+
+
+  Category.all({
+        orderBy: 'asc',
+        orderByField: 'name'
+      }).then(function (categories) {
+        $scope.categories = categories;
+        $scope.$apply();
+      }); 
     
 
     $scope.queryRelatedItems = function (query) {
@@ -165,14 +174,9 @@ angular.module('main')
 
     function loadCategories() {
       console.log($scope.obj.brand);
+     
       $scope.categories = $scope.obj.brand.categories;
-     /*  Category.all({
-        orderBy: 'asc',
-        orderByField: 'name'
-      }).then(function (categories) {
-        $scope.categories = categories;
-        $scope.$apply();
-      }); */
+     
     };
 
    

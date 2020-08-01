@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 # Upload folder
-files
+#files
 
 # Emacs
 *~
