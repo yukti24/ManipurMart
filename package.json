@@ -31,7 +31,7 @@
     "parse-server": "^3.10.0",
     "parse-server-mailgun-adapter-template": "^1.1.7",
     "pm2": "^4.2.3",
-    "sharp": "^0.24.1",
+    "sharp": "^0.30.5",
     "stripe": "^8.24.0",
     "winston": "^3.2.1"
   },
